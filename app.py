@@ -270,7 +270,7 @@ def preserve_case(original, replacement):
 def results():
     user_info = session.get('user_info', {})
     filename = f"{user_info.get('first_name', 'user')}_results.xlsx"
-    file_path = os.path.join(os.getcwd(), filename)
+    file_path = os.path.join(os.getcwd(), 'downloads', filename)
 
     user_judgments = pd.DataFrame(session.get('user_judgments', []))
     modifications = pd.DataFrame(session.get('modifications', []))
@@ -325,8 +325,8 @@ def save_feedback():
 
 @app.route('/download/<filename>')
 def download_file(filename):
-    # Descargar el archivo desde la carpeta raíz
-    file_path = os.path.join(os.getcwd(), filename)
+    # Descargar el archivo desde la carpeta downloads
+    file_path = os.path.join(os.getcwd(), 'downloads', filename)
     if not os.path.exists(file_path):
         return f"The file {filename} was not found.", 404
     return send_file(file_path, as_attachment=True)
