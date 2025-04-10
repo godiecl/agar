@@ -26,4 +26,4 @@ RUN set -ex; \
     python -m spacy download en_core_web_sm
 
 # run the flask app
-CMD ["flask", "--app", "app", "run"]
+CMD ["flask", "--app", "app", "run", "--host=0.0.0.0", "--port=5000"]
