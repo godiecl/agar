@@ -8,7 +8,6 @@ FROM mambaorg/micromamba:latest AS base
 
 # activate base environment
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
-ENV MAMBA_USER=root
 
 WORKDIR /app
 

@@ -4,6 +4,7 @@ services:
     image: 'disc/agar'
     container_name: agar
     restart: unless-stopped
+    user: 0:0
     expose:
       - '5000:5000'
     volumes:
