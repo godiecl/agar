@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">First Stage: Ambiguity Judgment</h1>
+
+<div class="card shadow mt-4">
+    <div class="card-body">
+
+        <p><strong>Requirement:</strong></p>
+        <p class="bg-light p-2 rounded">{{ current_req }}</p>
+
+        <h5 class="mt-3">How ambiguous do you consider this requirement?</h5>
+        <p>Please select the level of ambiguity from the options below:</p>
+
+        <form method="post">
+            <div class="mb-3">
+                <input type="radio" id="none" name="ambiguity_level" value="None" required>
+                <label for="none">No Ambiguity</label>
+                <br>
+                <input type="radio" id="low" name="ambiguity_level" value="Low" required>
+                <label for="low">Low Ambiguity</label>
+                <br>
+                <input type="radio" id="medium" name="ambiguity_level" value="Medium" required>
+                <label for="medium">Medium Ambiguity</label>
+                <br>
+                <input type="radio" id="high" name="ambiguity_level" value="High" required>
+                <label for="high">High Ambiguity</label>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Next</button>
+        </form>
+    </div>
+</div>
+
+<!-- Botón de Ayuda (Esquina inferior derecha) -->
+<button type="button" class="btn btn-info position-fixed" 
+        style="bottom: 20px; right: 20px; z-index: 1000;"
+        data-bs-toggle="modal" data-bs-target="#helpModal">
+    💡 Help
+</button>
+
+<!-- Modal emergente de ayuda -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Stage 1 Explanation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Stage 1: Ambiguity Assessment</h5>
+                <p>In this stage, you will individually evaluate each software requirement to determine its level of ambiguity. Please carefully choose from the following options:</p>
+                <ul>
+                    <li><strong>No Ambiguity:</strong> The requirement is clear and has only one interpretation.</li>
+                    <li><strong>Low:</strong> Minimal ambiguity, generally clear but could be slightly improved.</li>
+                    <li><strong>Medium:</strong> Noticeable ambiguity, needs clarification.</li>
+                    <li><strong>High:</strong> Very ambiguous, difficult to interpret clearly.</li>
+                </ul>
+                <p>Please evaluate each requirement carefully before proceeding.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

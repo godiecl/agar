@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Second Stage: Process Requirement</h1>
+
+<div class="card shadow mt-4">
+    <div class="card-body">
+        <p><strong>Original Requirement:</strong></p>
+        <p class="bg-light p-2 rounded">{{ original_req }}</p>
+
+        <h5 class="mt-3">Do you want to modify specific terms or rewrite the entire requirement?</h5>
+        <p>Please select an option and follow the instructions:</p>
+
+        <form method="post" id="processForm">
+            <div class="mb-3">
+                <input type="radio" id="modify_term" name="edit_option" value="term" checked>
+                <label for="modify_term">
+                    <strong>Modify Specific Terms:</strong> Update ambiguous terms with clearer alternatives.
+                </label>
+                <br>
+                <input type="radio" id="modify_requirement" name="edit_option" value="requirement">
+                <label for="modify_requirement">
+                    <strong>Rewrite Entire Requirement:</strong> Rewrite the requirement to make it more precise and clear.
+                </label>
+            </div>
+
+            <div id="term_modification" class="mb-3">
+                {% for term in term_data %}
+                <div class="card shadow-sm mb-3 term">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ term.term }} ({{ term.category }})</h5>
+                        <p><strong>Explanation:</strong> {{ term.explanation }}</p>
+                        <p><strong>Suggestion:</strong> {{ term.suggestion }}</p>
+                        <p class="text-muted"><em>If you do not consider the term ambiguous, please select "Do not modify".</em></p>
+
+                        <label for="input_{{ term.index }}_{{ term.term }}">
+                            Enter a replacement for "{{ term.term }}":
+                        </label>
+                        <input type="text"
+                               id="input_{{ term.index }}_{{ term.term }}"
+                               name="input_{{ term.index }}_{{ term.term }}"
+                               class="form-control mt-2 term-input"
+                               placeholder="Enter a clearer replacement for '{{ term.term }}'">
+
+                        <button type="button" class="btn btn-secondary lock mt-2" data-locked="false">Do not modify</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div id="requirement_modification" class="mb-3" style="display: none;">
+                <label for="new_requirement">
+                    <strong>Rewrite the Requirement:</strong> Enter a completely revised version of the requirement that addresses the ambiguity.
+                </label>
+                <textarea id="new_requirement" name="new_requirement" rows="5" class="form-control" placeholder="Enter a new version of the requirement..."></textarea>
+            </div>
+
+            <div id="alertMessage" class="alert alert-danger d-none mt-3"></div>
+
+            <button type="submit" class="btn btn-success w-100 mt-2" id="submitBtn" disabled>Next</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('modify_term').addEventListener('change', function () {
+        document.getElementById('term_modification').style.display = 'block';
+        document.getElementById('requirement_modification').style.display = 'none';
+        validateForm();
+    });
+
+    document.getElementById('modify_requirement').addEventListener('change', function () {
+        document.getElementById('term_modification').style.display = 'none';
+        document.getElementById('requirement_modification').style.display = 'block';
+        validateForm();
+    });
+
+    document.querySelectorAll('.term').forEach(term => {
+        const lockBtn = term.querySelector('.lock');
+        const input = term.querySelector('.term-input');
+
+        lockBtn.addEventListener('click', () => {
+            if (lockBtn.dataset.locked === 'true') {
+                lockBtn.dataset.locked = 'false';
+                lockBtn.textContent = 'Do not modify';
+                input.disabled = false;
+            } else {
+                lockBtn.dataset.locked = 'true';
+                lockBtn.textContent = 'Not modified';
+                input.value = '';
+                input.disabled = true;
+            }
+            validateForm();
+        });
+    });
+
+    document.getElementById('processForm').addEventListener('input', validateForm);
+
+    function validateForm() {
+        const modifyTerm = document.getElementById('modify_term').checked;
+        const modifyRequirement = document.getElementById('modify_requirement').checked;
+        const alertMessage = document.getElementById('alertMessage');
+        let isValid = false;
+        let alertText = '';
+
+        if (modifyTerm) {
+            const terms = document.querySelectorAll('.term');
+            isValid = Array.from(terms).every(term => {
+                const input = term.querySelector('.term-input');
+                const lockBtn = term.querySelector('.lock');
+                return input.value.trim() !== '' || lockBtn.dataset.locked === 'true';
+            });
+        } else if (modifyRequirement) {
+            const newRequirement = document.getElementById('new_requirement').value.trim();
+            isValid = newRequirement !== '';
+        }
+
+        if (!isValid) {
+            alertText = 'Please complete all ambiguous term replacements, select "Do not modify", or rewrite the entire requirement.';
+            alertMessage.textContent = alertText;
+            alertMessage.classList.remove('d-none');
+        } else {
+            alertMessage.classList.add('d-none');
+        }
+
+        document.getElementById('submitBtn').disabled = !isValid;
+    }
+</script>
+<!-- Botón de Ayuda (Esquina inferior derecha) -->
+<button type="button" class="btn btn-info position-fixed" 
+        style="bottom: 20px; right: 20px; z-index: 1000;"
+        data-bs-toggle="modal" data-bs-target="#helpModal">
+    💡 Help
+</button>
+
+<!-- Modal emergente de ayuda -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Stage 2 Explanation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Stage 2: Clarification and Improvement</h5>
+                <p>In this stage, ambiguous terms automatically detected by the system will be highlighted.</p>
+                <ul>
+                    <li>Review each ambiguous term and decide whether to:</li>
+                    <ul>
+                        <li>Replace it with a clearer alternative.</li>
+                        <li>Select <strong>\"Do not modify\"</strong> if you consider the term sufficiently clear.</li>
+                    </ul>
+                    <li>If necessary, you may rewrite the entire requirement to achieve maximum clarity.</li>
+                    <li>After addressing all ambiguous terms, click \"Next\" to proceed to the following requirement.</li>
+                </ul>
+                <p>Please take your time and ensure thoroughness in your revisions.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

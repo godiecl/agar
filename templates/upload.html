@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-center">Participant Information</h1>
+
+
+<form method="post" class="mt-4">
+    <h3>Personal Information</h3>
+    <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter your first name" required>
+    </div>
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter your last name" required>
+    </div>
+
+    <h3>Education Level</h3>
+    <div class="mb-3">
+        <label>Select your level of education:</label>
+        <select name="education_level" id="education_level" class="form-select" required>
+            <option value="" disabled selected>Select your education level</option>
+            <option value="Undergraduate Student">Undergraduate Student</option>
+            <option value="Postgraduate Student">Postgraduate Student</option>
+            <option value="University Student">University Student</option>
+            <option value="Master">Master</option>
+            <option value="Doctor">Doctor</option>
+        </select>
+    </div>
+
+    <h3>Knowledge Level: Software Engineering</h3>
+    <div class="mb-3">
+        <label>Select your level of knowledge:</label>
+        <select name="software_knowledge" id="software_knowledge" class="form-select" required>
+            <option value="" disabled selected>Select your level</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Basic">Basic</option>
+        </select>
+    </div>
+
+    <h3>Knowledge Level: Requirements Engineering</h3>
+    <div class="mb-3">
+        <label>Select your level of knowledge:</label>
+        <select name="requirements_knowledge" id="requirements_knowledge" class="form-select" required>
+            <option value="" disabled selected>Select your level</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Basic">Basic</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Continue</button>
+</form>
+
+{% endblock %}

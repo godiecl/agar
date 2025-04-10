@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Experiment Instructions</h1>
+<div class="card shadow mt-4">
+    <div class="card-body">
+        <h3>Welcome to the Ambiguity Analysis Experiment</h3>
+        <p>
+            The purpose of this experiment is to comprehensively evaluate the effectiveness of automated ambiguity detection in software requirements. Your active and conscientious participation is vital for the validation and continuous improvement of this tool, ultimately enhancing the clarity and accuracy of software requirements documentation.
+        </p>
+
+        <h4>What is Ambiguity?</h4>
+        <p>
+            Ambiguity within software requirements refers to terms or statements that can be interpreted in multiple, potentially conflicting ways. Such ambiguity can lead to confusion, implementation errors, delays, and increased costs in software development projects. Resolving ambiguity is critical to creating clear, actionable, and reliable requirements, significantly reducing project risks.
+        </p>
+
+        <h4>Context of the Experiment:</h4>
+        <p>
+            Software requirements often contain ambiguous or unclear language, leading to potential misunderstandings or implementation issues. This experiment investigates how effectively automated ambiguity detection complements human judgment in recognizing and clarifying unclear or vague requirements.
+        </p>
+
+        <h4>Objectives of the Experiment:</h4>
+        <ul>
+            <li>Accurately identify ambiguous elements within software requirements.</li>
+            <li>Compare human perceptions of ambiguity against the automated detection system.</li>
+            <li>Facilitate the clarification and improvement of ambiguous terms through user-driven corrections.</li>
+            <li>Collect detailed user feedback to refine and enhance the system’s accuracy and usability.</li>
+        </ul>
+
+        <h4>Structure of the Experiment:</h4>
+        <p>The experiment comprises two clearly defined stages, each accompanied by a help button (💡 Help) that provides additional explanations and guidance at any point during the tasks:</p>
+
+        <h5>Stage 1: Ambiguity Assessment</h5>
+        <ol>
+            <li>You will sequentially review a set of software requirements individually.</li>
+            <li>For each requirement, carefully evaluate its level of ambiguity and select the appropriate category (No Ambiguity, Low, Medium, High).</li>
+            <li>Proceed until all requirements are fully evaluated.</li>
+        </ol>
+
+        <h5>Stage 2: Clarification and Improvement</h5>
+        <ol>
+            <li>The system will revisit the previously reviewed requirements, highlighting terms automatically detected as ambiguous.</li>
+            <li>You will have the opportunity to clarify each ambiguous term by either providing clearer alternative wording or selecting "Do not modify" if you judge the original term sufficiently clear.</li>
+            <li>If necessary, you may also choose to rewrite the entire requirement to achieve greater clarity.</li>
+            <li>After addressing all highlighted ambiguities in a requirement, click "Next" to proceed.</li>
+        </ol>
+
+        <h4>Important Instructions:</h4>
+        <ul>
+            <li>Your responses will be carefully analyzed to enhance the effectiveness and accuracy of the ambiguity detection system.</li>
+            <li>We kindly request that you approach each requirement evaluation and modification with thoroughness, precision, and the highest possible commitment to quality.</li>
+            <li>There is no time constraint for completing the tasks; prioritize accuracy and thoughtful responses above speed.</li>
+            <li>Upon completing both stages, please ensure that you download your final results. A confirmation screen with a download link will be provided at the conclusion of the experiment.</li>
+        </ul>
+
+        <p>When you are ready to begin and committed to providing thoughtful responses, please click the button below:</p>
+
+        <form method="post">
+            <button type="submit" class="btn btn-primary w-100 mt-3">Start the Experiment</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

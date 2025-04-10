@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Results</h1>
+
+<form method="post" action="{{ url_for('results') }}">
+    <div class="mt-4">
+        <h3>Feedback and Improvement Suggestions</h3>
+        <div class="mb-3">
+            <label for="feedback" class="form-label">
+                Please provide any suggestions or feedback for improving this application:
+            </label>
+            <textarea class="form-control" id="feedback" name="feedback" rows="5"
+                      placeholder="Enter your suggestions or feedback here..."></textarea>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3>User Information</h3>
+        <p><strong>First Name:</strong> {{ session['user_info'].get('first_name', 'N/A') }}</p>
+        <p><strong>Last Name:</strong> {{ session['user_info'].get('last_name', 'N/A') }}</p>
+        <p><strong>Education Level:</strong> {{ session['user_info'].get('education_level', 'N/A') }}</p>
+        <p><strong>Software Engineering Knowledge:</strong> {{ session['user_info'].get('software_knowledge', 'N/A') }}</p>
+        <p><strong>Requirements Engineering Knowledge:</strong> {{ session['user_info'].get('requirements_knowledge', 'N/A') }}</p>
+    </div>
+
+    <div class="mt-4">
+        <h3>First Stage: User Judgments</h3>
+        <div class="table-responsive">
+            {% if user_judgments_table %}
+            {{ user_judgments_table|safe }}
+            {% else %}
+            <p>No data available for User Judgments.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3>Second Stage: Modifications</h3>
+        <div class="table-responsive">
+            {% if modifications_table %}
+            {{ modifications_table|safe }}
+            {% else %}
+            <p>No data available for Modifications.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">
+        ✅ Finish Experiment
+    </button>
+</form>
+{% endblock %}
