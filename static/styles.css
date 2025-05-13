@@ -133,3 +133,20 @@ footer a:hover {
         transform: translateY(0);
     }
 }
+.text-justified {
+    text-align: justify;
+}
+
+.ayuda-con-formato p {
+    text-indent: 1.5em;
+    margin-bottom: 1em;
+}
+
+.ayuda-con-formato ul {
+    margin-left: 2em;
+    margin-bottom: 1em;
+}
+
+.ayuda-con-formato li {
+    text-align: justify;
+}

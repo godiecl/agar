@@ -1,0 +1,77 @@
+{% if stage == 1 %}
+<!-- Help Button for Stage 1 -->
+<button type="button" class="btn btn-info position-fixed" 
+        style="bottom: 20px; right: 20px; z-index: 1000;"
+        data-bs-toggle="modal" data-bs-target="#helpModalStage1">
+    💡 Help
+</button>
+
+<!-- Modal for Stage 1 -->
+<div class="modal fade" id="helpModalStage1" tabindex="-1" aria-labelledby="helpModalLabelStage1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabelStage1">Stage 1: Ambiguity Assessment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-justified ayuda-con-formato">
+                <p>
+                    In this stage, you will individually evaluate each software requirement to determine its level of ambiguity. 
+                    Please carefully choose from the following options:
+                </p>
+                <ul>
+                    <li><strong>No Ambiguity:</strong> The requirement is clear and has only one interpretation.</li>
+                    <li><strong>Low:</strong> Minimal ambiguity, generally clear but could be slightly improved.</li>
+                    <li><strong>Medium:</strong> Noticeable ambiguity, needs clarification.</li>
+                    <li><strong>High:</strong> Very ambiguous, difficult to interpret clearly.</li>
+                </ul>
+                <p>Please evaluate each requirement carefully before proceeding.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif stage == 2 %}
+<!-- Help Button for Stage 2 -->
+<button type="button" class="btn btn-info position-fixed" 
+        style="bottom: 20px; right: 20px; z-index: 1000;"
+        data-bs-toggle="modal" data-bs-target="#helpModalStage2">
+    💡 Help
+</button>
+
+<!-- Modal for Stage 2 -->
+<div class="modal fade" id="helpModalStage2" tabindex="-1" aria-labelledby="helpModalLabelStage2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabelStage2">Stage 2: Clarification and Improvement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-justified ayuda-con-formato">
+                <p>
+                    In this stage, the system displays software requirements where potentially ambiguous terms have been 
+                    <strong>automatically detected and highlighted in different colors</strong> to assist your review. You are expected to clarify these terms by replacing them with more precise expressions or by rewriting the sentence, if necessary.
+                </p>
+                <p>
+                    <strong>After reviewing and editing the requirement, click the <span style="color:#0d6efd;">Save</span> button</strong> to store your changes. 
+                    Once saved, the <strong><span style="color:#198754;">Next</span></strong> button will be enabled so that you can proceed to the next requirement.
+                </p>
+                <p>
+                    <strong>Important:</strong> If you make any additional changes after clicking <strong>Save</strong>, you must click <strong>Save</strong> again 
+                    before continuing. This ensures that only finalized edits are submitted.
+                </p>
+                <p>
+                    If needed, you may rewrite the entire requirement to ensure clarity.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+

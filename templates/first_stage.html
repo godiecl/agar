@@ -37,31 +37,13 @@
         data-bs-toggle="modal" data-bs-target="#helpModal">
     💡 Help
 </button>
-
-<!-- Modal emergente de ayuda -->
-<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Stage 1 Explanation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Stage 1: Ambiguity Assessment</h5>
-                <p>In this stage, you will individually evaluate each software requirement to determine its level of ambiguity. Please carefully choose from the following options:</p>
-                <ul>
-                    <li><strong>No Ambiguity:</strong> The requirement is clear and has only one interpretation.</li>
-                    <li><strong>Low:</strong> Minimal ambiguity, generally clear but could be slightly improved.</li>
-                    <li><strong>Medium:</strong> Noticeable ambiguity, needs clarification.</li>
-                    <li><strong>High:</strong> Very ambiguous, difficult to interpret clearly.</li>
-                </ul>
-                <p>Please evaluate each requirement carefully before proceeding.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<script>
+    // Evitar reenvío del formulario si el usuario presiona "Atrás"
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+    
+{% set stage = 1 %}
+{% include 'help_stage.html' %}
 {% endblock %}

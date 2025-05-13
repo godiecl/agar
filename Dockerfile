@@ -2,8 +2,7 @@
 #
 # time eatmydata docker buildx build --progress=plain --tag disc/agar .
 #
-
-# ---- Debian ----
+# ---- Micromamba ----
 FROM mambaorg/micromamba:latest AS base
 
 # activate base environment
